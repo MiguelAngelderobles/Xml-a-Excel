@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.*;
 
 import java.util.List;
-
+//agarra etiqueta movimientos
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

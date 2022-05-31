@@ -3,10 +3,10 @@ package com.example.demo.modelDto;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.*;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+//agarra etiqueta empresa
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

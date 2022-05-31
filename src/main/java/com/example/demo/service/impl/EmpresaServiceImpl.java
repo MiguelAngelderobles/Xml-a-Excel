@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-
 import com.example.demo.modelDto.Empresas;
 import com.example.demo.service.EmpresaService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -12,17 +11,16 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
+//crea un archivo xsl, yo lo pude abrir con libreoffice y guarda correctamente en la carpeta resources ya que no puedo guardarla en el disco por falta de permisos
 @Service
 public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     public void create(Empresas empresas) throws Exception {
         this.manualValidate(empresas);
-
         Workbook workbook = new HSSFWorkbook();
 
             Sheet sheet = workbook.createSheet("Empresas");
@@ -93,13 +91,11 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     }
 
+    //validaciones manuales a falta de un bildings
     public void manualValidate(Empresas empresas) throws Exception {
         int fila =  2;
         int fila2 = 2;
-        System.out.println("empresas" + empresas);
-        if(Objects.isNull(empresas)){ throw new Exception("La lista no puede estar vacia"); }
-
-        if(empresas.getEmpresas() == null || empresas.getEmpresas().size() == 0){ throw new Exception("La lista no puede estar vacia"); }
+        if(empresas.getEmpresas() == null || empresas.getEmpresas().size() == 0){ throw new Exception("Archivo Invalido/No Encontrado"); }
         for(int i = 0; i < empresas.getEmpresas().size(); i++){
             if (String.valueOf(empresas.getEmpresas().get(i).getNroContrato()).isEmpty()){ throw new Exception("El numero de contrato no puede estar vacia");}
             if (String.valueOf(empresas.getEmpresas().get(i).getCuit()).isEmpty()){ throw new Exception("El cuit no puede estar vacio");}
@@ -117,7 +113,6 @@ public class EmpresaServiceImpl implements EmpresaService {
             fila = fila+1;
         }
     }
-
 
 
 }

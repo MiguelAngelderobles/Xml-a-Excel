@@ -6,6 +6,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
+
+//agarra etiqueta movimiento
+
 @Data
 @Getter
 @Setter

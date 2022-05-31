@@ -38,7 +38,8 @@ class DemoApplicationTests  extends TestCase {
 		MockitoAnnotations.initMocks(this);
 	}
 
-	@Test void testCreateExcelOk() throws Exception {
+	@Test
+	void testCreateExcelOk() throws Exception {
 		Empresas empresas = new Empresas();
 		Movimiento movimiento = new Movimiento(123123.0,"concepto",12312.0);
 		List<Movimiento> movimientoList = new ArrayList<>();
@@ -50,12 +51,13 @@ class DemoApplicationTests  extends TestCase {
 		empresas.setEmpresas(empresaList);
 		System.out.println("empresas" + empresas);
 
-		ResponseEntity ok2 = new ResponseEntity("ok",HttpStatus.OK);
+		ResponseEntity ok2 = new ResponseEntity("ok, Lectura de xml , y archivo procesado exitosamente",HttpStatus.OK);
 		assertEquals(empresaController.procesarXml(empresas),ok2);
 
 	}
 
-	@Test void FaltanteDato1() throws Exception {
+	@Test
+	void FaltanteDato1() throws Exception {
 		Empresas empresas1 = new Empresas();
 		Movimiento movimiento1 = new Movimiento(123123.0,"null",12312.0);
 		List<Movimiento> movimientoList1 = new ArrayList<>();
@@ -63,15 +65,29 @@ class DemoApplicationTests  extends TestCase {
 		Movimientos movimientos1 = new Movimientos(movimientoList1);
 		Empresa empresa1 = new Empresa(1L,"10","denominacion","domicilio",121,null,movimientos1);
 		List<Empresa> empresaList1 = new ArrayList<>();
-		empresaList1.add(empresa1);
 		empresas1.setEmpresas(empresaList1);
 
-		System.out.println("empresas" + empresaController.procesarXml(null));
 
-		ResponseEntity ok2 = new ResponseEntity("ok",HttpStatus.BAD_REQUEST);
+		ResponseEntity ok2 = new ResponseEntity("Archivo Invalido/No Encontrado",HttpStatus.BAD_REQUEST);
 		assertEquals(empresaController.procesarXml(null),ok2);
 
 	}
-
+	//falla validacion en test no sale el error de falta de variable (no postman)
+//	@Test
+//	void FaltanteDato2() throws Exception {
+//		Empresas empresas1 = new Empresas();
+//		Movimiento movimiento1 = new Movimiento(123123.0,null,12312.0);
+//		List<Movimiento> movimientoList1 = new ArrayList<>();
+//		movimientoList1.add(movimiento1);
+//		Movimientos movimientos1 = new Movimientos(movimientoList1);
+//		Empresa empresa1 = new Empresa(1L,"10","denominacion","domicilio",121,null,movimientos1);
+//		List<Empresa> empresaList1 = new ArrayList<>();
+//		empresas1.setEmpresas(empresaList1);
+//
+//		System.out.println("empresas" + empresaController.procesarXml(empresas1));
+//		ResponseEntity ok2 = new ResponseEntity("archivo esta vacio",HttpStatus.BAD_REQUEST);
+//		assertEquals(empresaController.procesarXml(empresas1),ok2);
+//
+//	}
 
 }

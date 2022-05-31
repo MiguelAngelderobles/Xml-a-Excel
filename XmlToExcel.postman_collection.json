@@ -1,0 +1,104 @@
+{
+	"id": "a3131fe4-9a26-231c-46d2-d6430508fe9b",
+	"name": "XmlToExcel",
+	"description": "",
+	"order": [
+		"8cdbbd55-0cd8-a4c8-fb17-6ef3c31a6241",
+		"98d9da7a-1514-a712-db16-a668fd2bda54",
+		"a1e93375-1556-3e12-6f39-8e135201a946"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1653999414339,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "8cdbbd55-0cd8-a4c8-fb17-6ef3c31a6241",
+			"headers": "Content-Type: application/xml\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/xml",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/empresa/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654005789853,
+			"name": "creacion de archivo ok",
+			"description": "Creacion de Excel, a travez de un archivo xml",
+			"collectionId": "a3131fe4-9a26-231c-46d2-d6430508fe9b",
+			"responses": [],
+			"rawModeData": "<Empresas>\r\n  <Empresa>\r\n    <NroContrato>1</NroContrato>\r\n    <CUIT>111111111111</CUIT>\r\n    <Denominacion></Denominacion>\r\n    <Domicilio>ILDEFONSO MUÑECAS 167 - B° CENTRO</Domicilio>\r\n    <CodigoPostal>4000</CodigoPostal>\r\n    <Organizador>2271</Organizador>\r\n    <Productor>26672</Productor>\r\n    <CIIU>623016</CIIU>\r\n    <Movimientos>\r\n      <Movimiento>\r\n\t    <SaldoCtaCte>-21802.12</SaldoCtaCte>\r\n        <Tipo>C</Tipo>\r\n        <CodigoMovimiento>1</CodigoMovimiento>\r\n        <Concepto>Pago</Concepto>\r\n        <Importe>21802.19</Importe>\r\n      </Movimiento>\r\n    </Movimientos>\r\n  </Empresa>\r\n  <Empresas>\r\n"
+		},
+		{
+			"id": "98d9da7a-1514-a712-db16-a668fd2bda54",
+			"headers": "Content-Type: application/xml\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/xml",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/empresa/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "binary",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654012626060,
+			"name": "Error de Empresas vacio",
+			"description": "Lista no puede estar vacia",
+			"collectionId": "a3131fe4-9a26-231c-46d2-d6430508fe9b",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "a1e93375-1556-3e12-6f39-8e135201a946",
+			"headers": "Content-Type: application/xml\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/xml",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/empresa/",
+			"queryParams": [],
+			"preRequestScript": "<Empresas>\r\n \r\n</Empresas>",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654025620597,
+			"name": "Falta Alguna variable",
+			"description": "No pueden faltar variables",
+			"collectionId": "a3131fe4-9a26-231c-46d2-d6430508fe9b",
+			"responses": [],
+			"rawModeData": "<Empresas>\r\n \r\n</Empresas>"
+		}
+	]
+}
