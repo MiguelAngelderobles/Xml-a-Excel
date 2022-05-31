@@ -2,43 +2,45 @@ package com.example.demo.modelDto;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @JacksonXmlRootElement(localName = "Empresa")
 public class Empresa {
 
     @JacksonXmlProperty(localName = "NroContrato")
-    @NotNull(message = "El numero de contrato es obligatorio.")
+    @NotEmpty(message = "El numero de contrato es obligatorio.")
     private Long nroContrato;
 
     @JacksonXmlProperty(localName = "CUIT")
-    @NotEmpty(message = "El numero de Cuit es obligatorio.")
+    @NotNull(message = "El numero de Cuit es obligatorio.")
     private String cuit;
 
     @JacksonXmlProperty(localName = "Denominacion")
-    @NotEmpty(message = "La denominacion es obligatorio.")
+    @NotNull(message = "La denominacion es obligatorio.")
     private String denominacion;
 
     @JacksonXmlProperty(localName = "Domicilio")
-    @NotEmpty(message = "El domicilio es obligatorio.")
+    @NotNull(message = "El domicilio es obligatorio.")
     private String domicilio;
 
     @JacksonXmlProperty(localName = "CodigoPostal")
-    @NotEmpty(message = "El codigo postal es obligatorio.")
+    @NotNull(message = "El codigo postal es obligatorio.")
     private int codigoPostal;
 
     @JacksonXmlProperty(localName = "Productor")
-    @NotEmpty(message = "El Productor es obligatorio.")
+    @NotNull(message = "El Productor es obligatorio.")
     private String productor;
 
     @JacksonXmlProperty(localName = "Movimientos")
+    @NotNull(message = "Los Movimientos es obligatorio.")
     private Movimientos movimientos;
 
     @Override

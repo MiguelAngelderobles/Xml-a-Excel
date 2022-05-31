@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -19,9 +20,10 @@ import java.util.TreeMap;
 public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
-    public void create(Empresas empresas) {
+    public void create(Empresas empresas) throws Exception {
+        this.manualValidate(empresas);
 
-            Workbook workbook = new HSSFWorkbook();
+        Workbook workbook = new HSSFWorkbook();
 
             Sheet sheet = workbook.createSheet("Empresas");
 
@@ -37,6 +39,8 @@ public class EmpresaServiceImpl implements EmpresaService {
 
             int fila =  2;
             int fila2 = 2;
+            //Validacion manual a fallo de @valid y binlding
+
             for(int i = 0; i < empresas.getEmpresas().size(); i++){
                 datos.put(String.valueOf(fila),new Object[]{String.valueOf(empresas.getEmpresas().get(i).getNroContrato()), empresas.getEmpresas().get(i).getCuit(), empresas.getEmpresas().get(i).getDenominacion(), empresas.getEmpresas().get(i).getDomicilio(), empresas.getEmpresas().get(i).getCodigoPostal(), empresas.getEmpresas().get(i).getProductor()});
                 for(int j = 0; j < empresas.getEmpresas().get(i).getMovimientos().getMovimiento().size(); j++){
@@ -77,6 +81,7 @@ public class EmpresaServiceImpl implements EmpresaService {
                 }
             }
         }
+
         try{
             File file = new File("src/main/resources/excelFinal.xlsm");
             FileOutputStream out = new FileOutputStream(file);
@@ -88,4 +93,32 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     }
 
+    public void manualValidate(Empresas empresas) throws Exception {
+        int fila =  2;
+        int fila2 = 2;
+        System.out.println("empresas" + empresas);
+        if(Objects.isNull(empresas)){ throw new Exception("La lista no puede estar vacia"); }
+
+        if(empresas.getEmpresas() == null || empresas.getEmpresas().size() == 0){ throw new Exception("La lista no puede estar vacia"); }
+        for(int i = 0; i < empresas.getEmpresas().size(); i++){
+            if (String.valueOf(empresas.getEmpresas().get(i).getNroContrato()).isEmpty()){ throw new Exception("El numero de contrato no puede estar vacia");}
+            if (String.valueOf(empresas.getEmpresas().get(i).getCuit()).isEmpty()){ throw new Exception("El cuit no puede estar vacio");}
+            if (String.valueOf(empresas.getEmpresas().get(i).getDenominacion()).isEmpty() ){ throw new Exception("La denominacion no puede estar vacia");}
+            if (String.valueOf(empresas.getEmpresas().get(i).getCodigoPostal()).isEmpty()){ throw new Exception("El codigo postal no puede estar vacio");}
+            if (String.valueOf(empresas.getEmpresas().get(i).getDomicilio()).isEmpty() ){ throw new Exception("El domicilio no puede estar vacia");}
+            if (String.valueOf(empresas.getEmpresas().get(i).getMovimientos()).isEmpty()){ throw new Exception("La Lista de Movimientos no puede estar vacia");}
+
+            for(int j = 0; j < empresas.getEmpresas().get(i).getMovimientos().getMovimiento().size(); j++){
+                if (empresas.getEmpresas().get(i).getMovimientos().getMovimiento().get(j).getSaldoCtaCte() == null){ throw new Exception("El saldo de la cuenta no puede estar vacia");}
+                if (empresas.getEmpresas().get(i).getMovimientos().getMovimiento().get(j).getImporte() == null){ throw new Exception("El importe no puede estar vacio");}
+                if (empresas.getEmpresas().get(i).getMovimientos().getMovimiento().get(j).getConcepto()== null){ throw new Exception("El concepto no puede estar vacia");}
+                fila2 = fila2 + 1;
+            }
+            fila = fila+1;
+        }
+    }
+
+
+
 }
+

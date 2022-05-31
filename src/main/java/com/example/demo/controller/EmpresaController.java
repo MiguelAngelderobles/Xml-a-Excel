@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/empresa")
@@ -22,14 +23,14 @@ public class EmpresaController {
     private EmpresaServiceImpl empresaService;
     @Operation(summary = "Guarda una lista XML")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Lectura de xml , y archivo procesado exitosamente"),
+            @ApiResponse(responseCode = "200",description = "ok, Lectura de xml , y archivo procesado exitosamente"),
             @ApiResponse(responseCode = "400",description = "Archivo Invalido/No Encontrado")
     })
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<?> procesarXml(@RequestBody Empresas empresas){
+    public ResponseEntity<?> procesarXml(@Valid @RequestBody Empresas empresas){
         try {
             empresaService.create(empresas);
-            return ResponseEntity.ok("ok");
+            return new ResponseEntity("ok, Lectura de xml , y archivo procesado exitosamente",HttpStatus.OK);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
