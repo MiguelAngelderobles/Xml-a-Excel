@@ -91,7 +91,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     }
 
-    //validaciones manuales a falta de un bildings
+    //validaciones manuales a falta de un bildings para errores
     public void manualValidate(Empresas empresas) throws Exception {
         int fila =  2;
         int fila2 = 2;
